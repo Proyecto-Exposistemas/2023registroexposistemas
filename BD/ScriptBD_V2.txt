@@ -1,0 +1,344 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1:5581
+-- Tiempo de generación: 20-10-2022 a las 06:18:15
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `exposistemas`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `administradores`
+--
+
+CREATE TABLE `administradores` (
+  `rfc` varchar(13) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumnos`
+--
+
+CREATE TABLE `alumnos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `semestre` int(11) NOT NULL DEFAULT 1,
+  `no_control` varchar(10) NOT NULL,
+  `correo` varchar(60) NOT NULL,
+  `telefono` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asesores_evento`
+--
+
+CREATE TABLE `asesores_evento` (
+  `no_evento` int(11) NOT NULL,
+  `rfc` varchar(13) NOT NULL,
+  `materia` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docentes`
+--
+
+CREATE TABLE `docentes` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `funcion` varchar(40) NOT NULL DEFAULT 'Coordinador del programa general',
+  `correo` varchar(64) NOT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  `rfc` varchar(13) NOT NULL,
+  `titulo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `espectadores_externos`
+--
+
+CREATE TABLE `espectadores_externos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `correo` varchar(64) NOT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  `procedencia` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento`
+--
+
+CREATE TABLE `evento` (
+  `no_evento` int(11) NOT NULL,
+  `evento` varchar(100) NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento_alumnos`
+--
+
+CREATE TABLE `evento_alumnos` (
+  `no_evento` int(11) NOT NULL,
+  `no_control` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento_externos`
+--
+
+CREATE TABLE `evento_externos` (
+  `no_evento` int(11) NOT NULL,
+  `correo` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ponentes_externos`
+--
+
+CREATE TABLE `ponentes_externos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `conferencia` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `correo` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registros`
+--
+
+CREATE TABLE `registros` (
+  `no_control` varchar(10) NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `total_alumnos`
+--
+
+CREATE TABLE `total_alumnos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `no_control` varchar(10) NOT NULL,
+  `semestre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `total_alumnos`
+--
+
+INSERT INTO `total_alumnos` (`nombre`, `paterno`, `materno`, `no_control`, `semestre`) VALUES
+('SERGIO', 'ALAMO', 'RAMOS', 'LZ19020003', 7),
+('IRMA AZUCENA', 'ALANIZ', 'VELAZQUEZ', 'LZ19020011', 7),
+('STEFANY', 'ROSSANO', 'PINTO', 'LZ19020028', 7),
+('FLAVIO ALEJANDRO', 'GARCIA', 'GARCIA', 'LZ19020045', 7),
+('JENNIFER SARAHI', 'ARTEAGA', 'CASTA?EDA', 'LZ19020082', 7),
+('MIGUEL ANGEL', 'CAUICH', 'BA?OS', 'LZ19020127', 7),
+('OMAR ALEJANDRO', 'ARTEAGA', 'MURILLO', 'LZ19020150', 7),
+('ROBERTO ANGEL', 'COVARRUBIAS', 'PEREZ', 'LZ19020157', 7),
+('ADRIAN', 'AVILA', 'VALDES', 'LZ19020165', 7),
+('MARIA ISABEL', 'SERRANO', 'GARCIA', 'LZ19020167', 7),
+('NAYELI', 'ROMERO', 'DAVILA', 'LZ20020001', 5),
+('ALDO FABIAN', 'DE LUCAS', 'CASTILLO', 'LZ20020007', 5),
+('ANA LAURA', 'ROBLES', 'LOPEZ', 'LZ20020014', 5),
+(' ESTEFANIA', 'LLAMAS', 'DE LA CRUZ', 'LZ20020020', 5),
+('ESTEPHANIA', 'SALCEDO', 'LUNA', 'LZ20020031', 5),
+('ALMA YARITZI', 'GONZALEZ', 'SERRANO', 'LZ20020034', 5),
+('ANA ISABEL', 'GARCIA', 'LLAMAS', 'LZ20020059', 5),
+('LEOBARDO DANIEL', 'MIRAMONTES', 'MURILLO', 'LZ20020064', 5),
+('LUIS FERNANDO', 'VALDES', 'MOTA', 'LZ20020098', 5),
+('CARLOS', 'NOLASCO', 'HERNANDEZ', 'LZ20020102', 5),
+('ALAN EDUARDO', 'TREJO', 'SANTOS', 'LZ20020113', 5),
+('CARLOS IVAN', 'MU?OZ', '', 'LZ20020130', 5),
+('ALEJANDRO', 'GORDO', 'BARAJAS', 'LZ20020142', 5),
+('JAIME ALEJANDRO', 'GARAY', 'CASANOVA', 'LZ21020001', 3),
+('LIZETH MAGALY', 'CASTILLO', 'GOMEZ', 'LZ21020006', 3),
+('FERNANDO', 'GONZALEZ', 'MAGALLANES', 'LZ21020015', 3),
+('CARLOS', 'GONZALEZ', 'SERRANO', 'LZ21020016', 3),
+('OSCAR ABEL', 'GUERRERO', 'VILLARREAL', 'LZ21020018', 3),
+('JORGE LUIS', 'SANDOVAL', 'RODRIGUEZ', 'LZ21020021', 3),
+('DIEGO', 'ARTEAGA', 'FELIX', 'LZ21020022', 3),
+('JUAN ANGEL', 'VELAZQUEZ', 'ROBLEDO', 'LZ21020040', 1),
+('JUAN RAMON', 'CASTRO', 'GONZALEZ', 'LZ21020042', 3),
+('ALAN CRISTOPHER', 'NAVA', 'ALEGRIA', 'LZ21020043', 3),
+('JOSSUE REFUGIO', 'RAMIREZ', 'AVILA', 'LZ21020047', 3),
+('FABIOLA', 'GARCIA', 'DAMIAN', 'LZ21020054', 3),
+('ROGELIA YAZMIN', 'HERMOSILLO', 'JARA', 'LZ21020055', 3),
+('DIEGO ISRAEL', 'FREGOSO', 'VALDIVIA', 'LZ21020096', 3),
+('SOFIA CAROLINA', 'ALMARAZ', 'GONZALEZ', 'LZ21020098', 3),
+('THANIA AHIRAM', 'BUGARIN', 'BOBADILLA', 'LZ21020099', 3),
+('VICTOR ALFONSO', 'FRAUSTO', 'PINEDO', 'LZ21020111', 3),
+('MARIA YANETH', 'LUNA', 'ACU?A', 'LZ21020124', 3),
+('MIGUEL ANGEL', 'ROSALES', 'VILLARREAL', 'LZ22020006', 1),
+('MIGUEL ANGEL', 'GONZALEZ ', 'GONZALEZ ', 'LZ22020013', 1),
+('JOS? ?NGEL', 'ESCOBEDO', 'CARRILLO', 'LZ22020017', 1),
+('SEBATIAN VALENTE', 'FLORES', 'GORDO', 'LZ22020027', 1),
+('JAHIRO', 'GONZALEZ', 'ESCALANTE', 'LZ22020032', 1),
+('CARLOS EMANUEL', 'GONZALEZ', 'ALVAREZ', 'LZ22020056', 1),
+('LOUIS GERARDO', 'SERRANO', 'ALAMO', 'LZ22020066', 1),
+('JONATHAN DAVID', 'HERRERA', 'GARCIA', 'LZ22020067', 1),
+('JONATHAN FABIAN', 'MENDOZA', 'MORA', 'LZ22020070', 1),
+('FATIMA MELISSA', 'TALAMANTES', 'GOMEZ', 'LZ22020072', 1),
+('CARLOS EDUARDO', 'GONZALEZ', 'MORENO', 'LZ22020073', 1),
+('MARTIN JESUS', 'MAGALLANES', 'MIRAMONTES', 'LZ22020075', 1),
+('  JAHIR JOVANNY', 'GODINA', 'AVILA', 'LZ22020086', 1),
+('DENI ALITZEL', 'ARELLANO', 'NAVARRO', 'LZ22020092', 1),
+('ROBERTO', 'GARCIA', '', 'LZ22020098', 1),
+('MARITZA ITZAYANA', 'ROSALES', 'DELGADO', 'LZ22020104', 1),
+('JOSE ARMANDO', 'LLAMAS', 'VALDEZ', 'LZ22020114', 1),
+('ARIEL ALEJANDRO', 'MU?OZ', '', 'LZ22020115', 1),
+('ALMA YOSELIN', 'MEDINA', 'DURAN', 'LZ22020116', 1),
+('RAMSES', 'RODRIGUEZ', 'MARQUEZ', 'LZ22020124', 1),
+('FRANCISCO JAVIER', 'VALDEZ', 'PEREZ', 'LZ22020158', 1),
+('BRENDA GUISSELLE', 'IN?IGUEZ', ' ESTRADA', 'LZ22020180', 1),
+('ALAN DANIEL', 'IXTLAHUACA', 'CASAS', 'LZ22020182', 1),
+('JUAN DANIEL', 'CORREA', 'CARDONA', 'LZ22020188', 1),
+('HILARIO', 'OROZCO', 'MAYORGA', 'LZ22020194', 1);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD KEY `rfc` (`rfc`);
+
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  ADD PRIMARY KEY (`no_control`);
+
+--
+-- Indices de la tabla `asesores_evento`
+--
+ALTER TABLE `asesores_evento`
+  ADD KEY `no_evento` (`no_evento`),
+  ADD KEY `rfc` (`rfc`);
+
+--
+-- Indices de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  ADD PRIMARY KEY (`rfc`);
+
+--
+-- Indices de la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`no_evento`);
+
+--
+-- Indices de la tabla `evento_alumnos`
+--
+ALTER TABLE `evento_alumnos`
+  ADD KEY `no_evento` (`no_evento`),
+  ADD KEY `no_control` (`no_control`);
+
+--
+-- Indices de la tabla `evento_externos`
+--
+ALTER TABLE `evento_externos`
+  ADD KEY `no_evento` (`no_evento`),
+  ADD KEY `correo` (`correo`);
+
+--
+-- Indices de la tabla `ponentes_externos`
+--
+ALTER TABLE `ponentes_externos`
+  ADD PRIMARY KEY (`correo`);
+
+--
+-- Indices de la tabla `registros`
+--
+ALTER TABLE `registros`
+  ADD KEY `no_control` (`no_control`);
+
+--
+-- Indices de la tabla `total_alumnos`
+--
+ALTER TABLE `total_alumnos`
+  ADD PRIMARY KEY (`no_control`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`rfc`) REFERENCES `docentes` (`rfc`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  ADD CONSTRAINT `alumnos_ibfk_1` FOREIGN KEY (`no_control`) REFERENCES `total_alumnos` (`no_control`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `asesores_evento`
+--
+ALTER TABLE `asesores_evento`
+  ADD CONSTRAINT `asesores_evento_ibfk_1` FOREIGN KEY (`no_evento`) REFERENCES `evento` (`no_evento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `asesores_evento_ibfk_2` FOREIGN KEY (`rfc`) REFERENCES `docentes` (`rfc`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `evento_alumnos`
+--
+ALTER TABLE `evento_alumnos`
+  ADD CONSTRAINT `evento_alumnos_ibfk_1` FOREIGN KEY (`no_evento`) REFERENCES `evento` (`no_evento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `evento_alumnos_ibfk_2` FOREIGN KEY (`no_control`) REFERENCES `alumnos` (`no_control`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `evento_externos`
+--
+ALTER TABLE `evento_externos`
+  ADD CONSTRAINT `evento_externos_ibfk_1` FOREIGN KEY (`no_evento`) REFERENCES `evento` (`no_evento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `evento_externos_ibfk_2` FOREIGN KEY (`correo`) REFERENCES `ponentes_externos` (`correo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `registros`
+--
+ALTER TABLE `registros`
+  ADD CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`no_control`) REFERENCES `alumnos` (`no_control`) ON UPDATE CASCADE;
+COMMIT;

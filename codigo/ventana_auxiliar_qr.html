@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperación código qr </title>
+  <link rel="stylesheet" href="../css/logincopy.css">
+  <link rel="shortcut icon" href="img/logo-ISC.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../css/toast_alert.css">
+</head>
+
+<body>
+  <div class="container" id="circulo">
+    <div class="forms-container">
+      <div class="signin-signup">
+
+        <form method="POST" class="sign-in-form" id="formularioQR">
+          <h2 class="title">Recuperar QR</h2>
+
+          <div class="input-field" id="cajaIdentidad">
+            <i class="fas fa-clipboard"></i>
+            <div class="options">
+              
+              <select name="identidad" id="identidad">
+                <option value="0">Ingresa tu rol</option>
+                <option value="1">Estudiante</option>
+                <option value="2">Externo</option>
+              </select>
+              <select name="roles" id="roles">
+                <option value="0">Selecciona un rol</option>
+                <option value="Espectador">Espectador</option>
+                <option value="Expositor">Expositor</option>
+                <option value="Panelista">Panelista</option>
+                <option value="Conferencista">Conferencista</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="input-field" id="cajaNumeroControl">
+            <i class="fas fa-id-card"></i>
+            <input id="control" type="text" placeholder="Número de control" name="numeroControl" autocomplete="off" />
+          </div>
+
+          <div class="input-field" id="cajaCorreo">
+            <i class="fas fa-envelope"></i>
+            <input id="email" name="email" type="email" placeholder="Correo" name="correo" autocomplete="off" />
+          </div>
+
+          <input  id="btn" type="submit" value="Consultar" class="btn solid" id="enviar"  />
+          
+          <div style="display: none;" id="informacion">
+            <h2>Aqui tienes tu QR</h2>
+            <h4><span>Toma</span> una <span>screenshot</span> de tu código QR</h4>
+            <span>Lo necesitarás para entrar a la sala</span>
+            
+          </div>
+          <img src="" alt="qr-code" id="qr_imagen" style="display: none;">
+
+        </form>
+        
+        <form method="POST" class="sign-up-form">
+          <h2 class="title">Iniciar sesión administrador</h2>
+
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="text" placeholder="Usuario" name="inputUser" class="" autocomplete="off" />
+          </div>
+
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Contraseña" name="inputPassword" class="" autocomplete="off" />
+          </div>
+
+          <input type="submit" value="Iniciar sesión" class="btn solid" />
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../js/campos_qr_aux.js"></script>
+  <script src="../js/toast_alert.js"></script>
+</body>
+</html>

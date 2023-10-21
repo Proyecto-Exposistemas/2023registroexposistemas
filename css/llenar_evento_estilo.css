@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+html {
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #4b6cb7 0%, #182848 100%);
+    color: #fff;
+}
+
+header h1, header h2 {
+    margin: 0.3rem;
+}
+.container-all {
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedor_datos{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e2e2;
+}       
+
+.contenedor_datos form{
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    row-gap: 2rem;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.botones {
+    width: 15rem;
+    height: 1.5rem;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #4b6cb7 0%, #182848 100%);
+    color: #fff;
+    font-size: 1rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.botones:hover {
+    background: linear-gradient(45deg, #182848 0%, #4b6cb7 100%);
+    cursor: pointer;
+    transition: 500ms all;
+}
+
+.table-cebra {
+    width: 100%;
+    color: #fff;
+    margin: 0 auto;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.table-cebra td {
+    color: black;
+    background-color: white;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 250px;
+}
+
+.table-cebra th {
+    color: white;
+    background: linear-gradient(to top, #4b6cb7 0%, #182848 100%);
+    width: 250px;
+}
+
+.table-cebra td:last-child,
+.table-cebra th:last-child {
+    border-right: 0;
+}
+
+.table-cebra tbody tr {
+    background: #1e355e;
+}
+
+.table-cebra tbody tr:nth-child(2n) {
+    background: white;
+}
+
+.contenedor-tabla {
+    max-width: 100%;
+    overflow-x: scroll;
+    text-align: center;
+    justify-items: center;
+}
+
+.table-cebra .sticky {
+    position: sticky;
+    left: 0;
+}
+
+.table-cebra tbody tr .sticky {
+    background: white;
+}
+
+.table-cebra tbody tr:nth-child(2n) {
+    background: #f2f2f2;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input {
+    width: 15rem;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font: inherit;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    outline: 2px solid #273d64;
+}
+
+.input-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(10px, 10px);
+    transform-origin: left;
+    transition: transform .25s;
+    font-weight: 600;
+}
+
+.input:focus~.input-label,
+.input:valid~.input-label {
+    transform: translate(0, -30px) scale(.8);
+    color: #273d64;
+}
+
+.input:is(:focus, :valid) {
+    outline-color: #273d64;
+}
+
+::-webkit-scrollbar{
+    width: 0.85rem;
+    background-color: #fff;
+}
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(0deg, #000851 0%, #1CB5E0 100%);
+    border-radius: 1rem;
+}
+#listado {
+    max-width: 100%;
+    overflow-x: scroll;
+    text-align: center;
+    justify-items: center;
+    
+}
+#listado th{
+    color: white;
+    background: linear-gradient(to top, #4b6cb7 0%, #182848 100%);
+    width: 250px;
+}
+#listado td{
+    color: black;
+    background-color: white;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 250px;
+}
+#listado td:last-child,
+#listado th:last-child {
+    border-right: 0;
+}
+
+#listado tbody tr {
+    background: #1e355e;
+}
+
+#listado tbody tr:nth-child(2n) {
+    background: white;
+}
+#listado .sticky {
+    position: sticky;
+    left: 0;
+}
+
+#listado tbody tr .sticky {
+    background: white;
+}
+
+#listado tbody tr:nth-child(2n) {
+    background: #f2f2f2;
+}

@@ -1,0 +1,246 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1:5581
+-- Tiempo de generación: 18-10-2022 a las 22:53:51
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `exposistemas`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `administradores`
+--
+
+CREATE TABLE `administradores` (
+  `rfc` varchar(13) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alunmos`
+--
+
+CREATE TABLE `alunmos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `semestre` int(11) NOT NULL DEFAULT 1,
+  `no_control` varchar(9) NOT NULL,
+  `correo` varchar(60) NOT NULL,
+  `telefono` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asesores_evento`
+--
+
+CREATE TABLE `asesores_evento` (
+  `no_evento` int(11) NOT NULL,
+  `rfc` varchar(13) NOT NULL,
+  `materia` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docentes`
+--
+
+CREATE TABLE `docentes` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `funcion` varchar(40) NOT NULL DEFAULT 'Coordinador del programa general',
+  `correo` varchar(64) NOT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  `rfc` varchar(13) NOT NULL,
+  `titulo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `espectadores_externos`
+--
+
+CREATE TABLE `espectadores_externos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `correo` varchar(64) NOT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  `procedencia` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento`
+--
+
+CREATE TABLE `evento` (
+  `no_evento` int(11) NOT NULL,
+  `evento` varchar(100) NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento_alumnos`
+--
+
+CREATE TABLE `evento_alumnos` (
+  `no_evento` int(11) NOT NULL,
+  `no_control` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento_externos`
+--
+
+CREATE TABLE `evento_externos` (
+  `no_evento` int(11) NOT NULL,
+  `correo` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ponentes_externos`
+--
+
+CREATE TABLE `ponentes_externos` (
+  `nombre` varchar(40) NOT NULL,
+  `paterno` varchar(20) NOT NULL,
+  `materno` varchar(20) DEFAULT NULL,
+  `conferencia` varchar(100) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `correo` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registros`
+--
+
+CREATE TABLE `registros` (
+  `no_control` varchar(9) NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD KEY `rfc` (`rfc`);
+
+--
+-- Indices de la tabla `alunmos`
+--
+ALTER TABLE `alunmos`
+  ADD PRIMARY KEY (`no_control`);
+
+--
+-- Indices de la tabla `asesores_evento`
+--
+ALTER TABLE `asesores_evento`
+  ADD KEY `no_evento` (`no_evento`),
+  ADD KEY `rfc` (`rfc`);
+
+--
+-- Indices de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  ADD PRIMARY KEY (`rfc`);
+
+--
+-- Indices de la tabla `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`no_evento`);
+
+--
+-- Indices de la tabla `evento_alumnos`
+--
+ALTER TABLE `evento_alumnos`
+  ADD KEY `no_evento` (`no_evento`),
+  ADD KEY `no_control` (`no_control`);
+
+--
+-- Indices de la tabla `evento_externos`
+--
+ALTER TABLE `evento_externos`
+  ADD KEY `no_evento` (`no_evento`),
+  ADD KEY `correo` (`correo`);
+
+--
+-- Indices de la tabla `ponentes_externos`
+--
+ALTER TABLE `ponentes_externos`
+  ADD PRIMARY KEY (`correo`);
+
+--
+-- Indices de la tabla `registros`
+--
+ALTER TABLE `registros`
+  ADD KEY `no_control` (`no_control`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `administradores`
+--
+ALTER TABLE `administradores`
+  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`rfc`) REFERENCES `docentes` (`rfc`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `asesores_evento`
+--
+ALTER TABLE `asesores_evento`
+  ADD CONSTRAINT `asesores_evento_ibfk_1` FOREIGN KEY (`no_evento`) REFERENCES `evento` (`no_evento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `asesores_evento_ibfk_2` FOREIGN KEY (`rfc`) REFERENCES `docentes` (`rfc`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `evento_alumnos`
+--
+ALTER TABLE `evento_alumnos`
+  ADD CONSTRAINT `evento_alumnos_ibfk_1` FOREIGN KEY (`no_evento`) REFERENCES `evento` (`no_evento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `evento_alumnos_ibfk_2` FOREIGN KEY (`no_control`) REFERENCES `alunmos` (`no_control`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `evento_externos`
+--
+ALTER TABLE `evento_externos`
+  ADD CONSTRAINT `evento_externos_ibfk_1` FOREIGN KEY (`no_evento`) REFERENCES `evento` (`no_evento`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `evento_externos_ibfk_2` FOREIGN KEY (`correo`) REFERENCES `ponentes_externos` (`correo`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `registros`
+--
+ALTER TABLE `registros`
+  ADD CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`no_control`) REFERENCES `alunmos` (`no_control`) ON UPDATE CASCADE;
+COMMIT;
