@@ -3,10 +3,9 @@
 * Este archivo crea las consultas para una base de datos en phpmyadmin
 */
 define("HOST", "mysql:host=localhost;");
-define("DBNAME", "dbname=u283658544_Exposistemas");
-define("USUARIO", "u283658544_UsuarioExpo");
-//define("PASSWORD", 'k7^wWYn=5Ay0h~yW');
-define("PASSWORD", 'ExposistemasContra2022');
+define("DBNAME", "dbname=exposistemas");
+define("USUARIO", "root");
+define("PASSWORD", '');
 
 
 class CRUD_general{

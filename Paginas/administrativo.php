@@ -248,7 +248,7 @@
             <tbody>
               <tr>
                 <?php
-                    include_once("../CRUD/CRUD_bd_general.php");
+                    include_once("CRUD/CRUD_bd_general.php");
                     $con=new CRUD_general();
                     $con->conexionBD();
                 
