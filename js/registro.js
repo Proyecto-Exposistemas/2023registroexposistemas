@@ -68,5 +68,4 @@ function limpiarCampos() {
     input_titulo.value = "";
     input_rfc.value = "";
     input_lugar.value = "";
-    
 }

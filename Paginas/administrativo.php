@@ -309,6 +309,9 @@
 
           </table>
         </article>
+        <div class="botones">
+            <button class="btn" id="pdf" >Exportar PDF</button>
+        </div>
       </div>
 
       <!-- Sección para el cambio de contraseña #######################################################-->
@@ -411,6 +414,7 @@
   <script src="js/MiJavaScript.js"></script>
   <script src="js/passwords.js"></script>
   <script src="js/toast_alert.js"></script>
+  <script src="js/generarPdf.js"></script>
   
 </body>
 
