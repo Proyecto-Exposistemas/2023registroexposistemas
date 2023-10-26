@@ -8,7 +8,7 @@
             // Logo
             $this -> Image('../img/Imagen1.png',10,8,0);
             $this -> Image('../img/Imagen2.png',165,5,40);
-            $this -> Ln(12);
+            $this -> Ln(15);
         }
 
         function Footer(){
@@ -58,15 +58,17 @@
     $pdf->AddPage();
     $ancho_total = $pdf->GetPageWidth();
     $ancho_celda = $ancho_total / 7;
+    $menos = 100 / 5;
 
     //Coloca una celda en el centro de la hoja que diga "Cronograma de Exposistemas" con salto de linea
     $pdf->SetFont('Arial','B',20);
     $pdf->Cell(0, 10, utf8_decode('Cronograma de Exposistemas'), 0, 1, 'C');
     $pdf->SetFont('Arial','',11);
     $pdf->Ln(5);
+    $ancho_celda = $ancho_celda + $menos;
+    $especial = $ancho_celda - $menos;
 
-
-    $table = new easyTable($pdf, '{'.$ancho_celda.', '.$ancho_celda.', '.$ancho_celda.', '.$ancho_celda.', '.$ancho_celda.', '.$ancho_celda.', '.$ancho_celda.'}');
+    $table = new easyTable($pdf, '{'.$especial.', '.$ancho_celda.', '.$ancho_celda.', '.$especial.', '.$ancho_celda.', '.$ancho_celda.', '.$ancho_celda.'}');
     $table -> rowStyle('align:{CCCCCCC}; valign:M; border-color:#000; border:1; paddingY:2; bgcolor:#668588; font-color:#fff; font-family:FontUTF8; font-size:12; font-style:B');
     $table -> easyCell(utf8_decode('No. Evento'));
     $table -> easyCell(utf8_decode('Evento'));
@@ -76,6 +78,7 @@
     $table -> easyCell(utf8_decode('Asesores'));
     $table -> easyCell(utf8_decode('Materia'));
     $table -> printRow();
+
 
     foreach($resultadoE as $rowE){
         $resultadoA = $con->MOSTRAR($consulta_alumnos,[":numero"=>$rowE['no_evento']]);
@@ -90,16 +93,20 @@
 
         $expositores = "";
         foreach($resultadoA as $rowA){
-            $expositores .= $rowA['nombre'].' '.$rowA['paterno'].' ';
+            $expositores .= $rowA['nombre'].' '.$rowA['paterno'];
+            $expositores .= "\n";
         }
         foreach($resultadoC as $rowC){
-            $expositores .= $rowC['nombre'].' '.$rowC['paterno'].' ';
+            $expositores .= $rowC['nombre'].' '.$rowC['paterno'];
+            $expositores .= "\n";
         }
+
         $table -> easyCell(utf8_decode($expositores));
         
         $asesores = "";
         foreach($resultadoB as $rowB){
-            $asesores .= $rowB['nombre'].' '.$rowB['paterno'].' ';
+            $asesores .= $rowB['nombre'].' '.$rowB['paterno'];
+            $asesores .= "\n";
         }
         $table -> easyCell(utf8_decode($asesores));
 
