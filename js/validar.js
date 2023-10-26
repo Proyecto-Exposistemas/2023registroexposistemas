@@ -1,5 +1,5 @@
 let flagNombre = false;
-let flagPaterno = false;
+let flagPaterno = true;
 let flagMaterno = false;
 let flagCorreo = false;
 let flagIdentidad = false;
@@ -32,7 +32,9 @@ const expresiones = {
     calle: /^(^[a-zA-Z0-9#áéíóúÁÉÍÓÚñÑ ]{5,30})+$/,
     password: /^[\w\W]{8,16}$/,
     //correo:/^(([a-zA-ZáéíóúÁÉÍÓÚñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\_]{1,30}))+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-    correo: /^(([a-zA-ZáéíóúÁÉÍÓÚñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.\_]{1,100}))+\@(([a-zA-Z])+\.)+([a-zA-Z]{2,4})+$/,
+    //correo: /^(([a-zA-ZáéíóúÁÉÍÓÚñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.\_]{1,100}))+\@(([a-zA-Z])+\.)+([a-zA-Z]{2,4})+$/,
+    correo:/^([a-zA-ZáéíóúÁÉÍÓÚñÑ][a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.\_]+)\@([a-zA-Z]+)\.([a-zA-Z]{2,})$/
+    
 }
 
 /* VALIDACIONES PARA LOS NOMBRES */
@@ -51,7 +53,7 @@ nombre.addEventListener('keyup', (e) => {
     }
 
     else {
-        flagNombre = false;
+        flagNombre = true;
         validar();
     }
 
@@ -73,7 +75,7 @@ ap.addEventListener('keyup', (e) => {
     }
 
     else {
-        flagPaterno = false;
+        flagPaterno = true;
         validar();
     }
 
@@ -96,7 +98,7 @@ am.addEventListener('keyup', (e) => {
     }
 
     else {
-        flagMaterno = false;
+        flagMaterno = true;
         validar();
     }
 
@@ -112,6 +114,7 @@ emailCaja.addEventListener('keyup', (e) => {
     let valorinput = e.target.value;
 
     emailCaja.value = valorinput.replace(/[^a-zA-Z0-9@áéíóúÁÉÍÓÚñÑ._-]/g, '').trim();
+    console.log(valorinput);
     if (expresiones.correo.test(valorinput.replace(/\s/g, '').trim())) {
         flagCorreo = true;
         validar();
@@ -161,9 +164,13 @@ tel.addEventListener('keyup', (e) => {
     }
 
     else {
+        if (tel.value.length == 10) {
+            flagTelefono = true;
+            validar();
+        }else{
         flagTelefono = false;
         validar();
-    }
+            }    }
 });
 
 /* VALIDACIONES PARA EL NUMERO DE CONTROL */
@@ -285,7 +292,7 @@ lugar.addEventListener('keyup', (e) => {
     }
 
     else {
-        flagProcedencia = false;
+        flagProcedencia = true;
         validar();
     }
 });
