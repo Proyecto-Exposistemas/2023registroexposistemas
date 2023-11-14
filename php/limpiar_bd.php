@@ -43,4 +43,8 @@ $conexion->INSERTAR_ELIMINAR_ACTUALIZAR($q_docentes, null);
 $q_enentos = "DELETE FROM evento";
 $conexion->INSERTAR_ELIMINAR_ACTUALIZAR($q_enentos, null);
 
+//crea json encode y los headers
+header('Content-Type: application/json');
+
+echo json_encode("Se limpio la base de datos");
 ?>

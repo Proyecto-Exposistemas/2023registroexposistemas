@@ -345,7 +345,7 @@
         </form>
       </div>
 
-        <!-- Seccion para escanear los códigos QR -->
+      <!-- Seccion para escanear los códigos QR -->
       <div class="card">
         <h2>Escanear código QR</h2>
         <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -393,7 +393,12 @@
           });
         </script>
       </div>
-
+      
+      <!-- Seccion para escanear los códigos QR -->
+      <div class="card">
+        <h2>Limpiar base de datos</h2>
+        <button class="btn delete" id="botonEliminarBd" >ELMINAR BASE DE DATOS</button>
+      </div>
     </article>
 
   </section>
@@ -415,7 +420,7 @@
   <script src="js/passwords.js"></script>
   <script src="js/toast_alert.js"></script>
   <script src="js/generarPdf.js"></script>
-  
+  <script src="js/eliminarBD.js"></script>
 </body>
 
 </html>

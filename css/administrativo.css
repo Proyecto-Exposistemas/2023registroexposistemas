@@ -675,3 +675,14 @@ form {
 tr:hover {
     background-color: #82aaae;
 }
+
+.delete{
+    background: linear-gradient(135deg, #7a1d1d 0%, #e40404 100%);
+    background-size: 200% 100%;
+    background-position: left center;
+    transition: background 300ms ease;
+}
+
+.delete:hover{
+    background-position: right bottom;
+}
