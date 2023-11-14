@@ -129,7 +129,7 @@
 
       </form>
 
-      <form action="../Crear_Excel/excel.php" id="formulario_excel">
+      <form action="../php/excelConstancias.php" id="formulario_excel">
         <label>Seleccione la fecha del evento</label>
         <?php
         $fecha = date("Y") . '-' . date("m") . '-' . date("d");

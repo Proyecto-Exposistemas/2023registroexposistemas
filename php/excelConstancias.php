@@ -1,7 +1,7 @@
 <?php
     //setlocale(LC_ALL, "es_ES");
     //importar la libreria
-    require 'vendor/autoload.php';
+    require '../Crear _Excel/vendor/autoload.php';
 
     // use PhpOffice\PhpSpreadsheet\Spreadsheet;
     // use PhpOffice\PhpSpreadsheet\Writer\Xls;
@@ -44,13 +44,13 @@
     $resultados_alumnos = $obj->Mostrar($consulta);
 
     for($i = 0; $i < count($resultados_alumnos); $i++){
-        $hoja->setCellValue('C' . $i+2, date("d"."/m"."/Y")) -> setCellValue('D' . $i+2, "Constancia") -> 
-        setCellValue('E' . $i + 2, $resultados_alumnos[$i]["nombre"] . " " . $resultados_alumnos[$i]["paterno"] . ' ' . 
+        $hoja->setCellValue('C' . strval($i+2), date("d"."/m"."/Y")) -> setCellValue('D' . strval($i+2), "Constancia") -> 
+        setCellValue('E' . strval($i+2), $resultados_alumnos[$i]["nombre"] . " " . $resultados_alumnos[$i]["paterno"] . ' ' . 
         $resultados_alumnos[$i]["materno"])
-        -> setCellValue('F' . $i+2, 'Por su destacada participación con el proyecto '.$resultados_alumnos[$i]["evento"] . 
+        -> setCellValue('F' . strval($i+2), 'Por su destacada participación con el proyecto '.$resultados_alumnos[$i]["evento"] . 
         ', en el "Evento de Exposistemas '. date("Y") . '" llevado a cabo el día ' . $fecha);
 
-        $hoja->getStyle('F'. $i+2)->getAlignment()->setWrapText(true);
+        $hoja->getStyle('F'. strval($i+2))->getAlignment()->setWrapText(true);
     }
 
     //sacar los datos para las constancias de externos
@@ -65,13 +65,13 @@
     $resultados_externos = $obj->Mostrar($consulta);
 
     for ($i = 0; $i < count($resultados_externos); $i++) {
-        $hoja->setCellValue('C' . $i + $aumento, date("d" . "/m" . "/Y"))->setCellValue('D' . $i + $aumento, "Constancia")->
-        setCellValue('E' . $i + $aumento, $resultados_externos[$i]["nombre"] . " " . $resultados_externos[$i]["paterno"] . ' ' . 
+        $hoja->setCellValue('C' . strval($i+$aumento), date("d" . "/m" . "/Y"))->setCellValue('D' . strval($i+$aumento), "Constancia")->
+        setCellValue('E' . strval($i+$aumento), $resultados_externos[$i]["nombre"] . " " . $resultados_externos[$i]["paterno"] . ' ' . 
         $resultados_externos[$i]["materno"])
-        ->setCellValue('F' . $i + $aumento, 'Por su destacada participación con el proyecto ' . $resultados_externos[$i]["evento"] .
+        ->setCellValue('F' . strval($i+$aumento), 'Por su destacada participación con el proyecto ' . $resultados_externos[$i]["evento"] .
             ', en el "Evento de Exposistemas ' . date("Y") . '" llevado a cabo el día ' . $fecha);
 
-        $hoja->getStyle('F' . $i + $aumento)->getAlignment()->setWrapText(true);
+        $hoja->getStyle('F' . strval($i+$aumento))->getAlignment()->setWrapText(true);
     }
 
     //sacar los datos para las constancias de docentes
@@ -83,13 +83,13 @@
 
     for ($i = 0; $i < count($resultados_docentes); $i++) {
 
-        $hoja->setCellValue('C' . $i + $aumento, date("d" . "/m" . "/Y"))->setCellValue('D' . $i + $aumento, "Constancia")->
-        setCellValue('E' . $i + $aumento, $resultados_docentes[$i]["nombre"] . " " . $resultados_docentes[$i]["paterno"] . ' ' .
+        $hoja->setCellValue('C' . strval($i+$aumento), date("d" . "/m" . "/Y"))->setCellValue('D' . strval($i+$aumento), "Constancia")->
+        setCellValue('E' . strval($i+$aumento), $resultados_docentes[$i]["nombre"] . " " . $resultados_docentes[$i]["paterno"] . ' ' .
         $resultados_docentes[$i]["materno"])
-            ->setCellValue('F' . $i + $aumento, 'Por su destacada participación como ' . $resultados_docentes[$i]["funcion"] .
+            ->setCellValue('F' . strval($i+$aumento), 'Por su destacada participación como ' . $resultados_docentes[$i]["funcion"] .
                 ', en el "Evento de Exposistemas ' . date("Y") . '" llevado a cabo el día ' . $fecha);
 
-        $hoja->getStyle('F' . $i + $aumento)->getAlignment()->setWrapText(true);
+        $hoja->getStyle('F' . strval($i+$aumento))->getAlignment()->setWrapText(true);
     }
 
 
