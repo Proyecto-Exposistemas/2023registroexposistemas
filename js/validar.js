@@ -1,10 +1,10 @@
 let flagNombre = false;
 let flagPaterno = true;
 let flagMaterno = false;
-let flagCorreo = false;
+let flagCorreo = true;
 let flagIdentidad = false;
 let flagTelefono = false;
-let flagNumeroControl = false;
+let flagNumeroControl = true;
 let flagSemestre = false;
 let flagTitulo = false;
 let flagFuncion = false;
@@ -120,7 +120,7 @@ emailCaja.addEventListener('keyup', (e) => {
         validar();
     }
     else {
-        flagCorreo = false;
+        flagCorreo = true;
         validar();
     }
 });
@@ -189,7 +189,7 @@ control.addEventListener('keyup', (e) => {
     }
 
     else {
-        flagNumeroControl = false;
+        flagNumeroControl = true;
         validar();
     }
 });
