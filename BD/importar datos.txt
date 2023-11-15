@@ -1,0 +1,6 @@
+LOAD DATA INFILE 'C:/xampp/htdocs/RegistroExposistemas/2023registroexposistemas/BD/lista_alumnos.csv'
+INTO TABLE total_alumnos
+CHARACTER SET utf8
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
