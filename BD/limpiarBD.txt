@@ -1,0 +1,12 @@
+DELETE FROM registros_externos;
+DELETE FROM espectadores_externos;
+DELETE FROM evento_externos;
+DELETE FROM registros_ponentes_ext;
+DELETE FROM ponentes_externos;
+DELETE FROM registros_alumnos;
+DELETE FROM evento_alumnos;
+DELETE FROM alumnos;
+DELETE FROM total_alumnos;
+DELETE FROM asesores_evento;
+DELETE FROM docentes WHERE(rfc != 'QWER12345678');
+DELETE FROM evento
